@@ -13,15 +13,15 @@ class TextSize {
   static double profileSize = 55.0;
 }
 
-class TextStyles {
-  static TextStyle appBarTitle({Color? textColor, double? size}) {
+class ConversionStyles {
+  TextStyle appBarTitle({Color? textColor, double? size}) {
     return GoogleFonts.lato(
         fontSize: size ?? TextSize.medium,
         color: textColor ?? Colors.black,
         fontWeight: FontWeight.w700);
   }
 
-  static TextStyle paragraph(
+  TextStyle paragraph(
     double size, {
     FontWeight? weight,
     Color? color,
