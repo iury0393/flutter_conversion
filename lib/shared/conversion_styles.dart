@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextSize {
-  static double small = 6.0;
-  static double xSmall = 10.0;
-  static double medium = 14.0;
-  static double xMedium = 18.0;
-  static double large = 22.0;
-  static double xLarge = 26.0;
-  static double big = 30.0;
-  static double xBig = 34.0;
-  static double profileSize = 55.0;
+  double small = 6.0;
+  double xSmall = 10.0;
+  double medium = 14.0;
+  double xMedium = 18.0;
+  double large = 22.0;
+  double xLarge = 26.0;
+  double big = 30.0;
+  double xBig = 34.0;
+  double profileSize = 55.0;
 }
 
 class ConversionStyles {
   TextStyle appBarTitle({Color? textColor, double? size}) {
     return GoogleFonts.lato(
-        fontSize: size ?? TextSize.medium,
+        fontSize: size ?? TextSize().medium,
         color: textColor ?? Colors.black,
         fontWeight: FontWeight.w700);
   }

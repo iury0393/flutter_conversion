@@ -10,9 +10,10 @@ class ConversionApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData.dark(),
       title: 'Conversão de moedas para BRL',
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

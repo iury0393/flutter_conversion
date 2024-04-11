@@ -1,5 +1,7 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_conversion/home/presentation/widget/dropdown_widget.dart';
 import 'package:flutter_conversion/shared/conversion_styles.dart';
 import 'package:flutter_conversion/shared/utils.dart';
 
@@ -12,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ConversionStyles conversionStyles = ConversionStyles();
+  final TextSize textSize = TextSize();
   final Utils utils = Utils();
 
   @override
@@ -22,39 +25,58 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text(
           'Conversão',
-          style: conversionStyles.appBarTitle(),
+          style: conversionStyles.appBarTitle(
+            textColor: Colors.white,
+            size: textSize.big,
+          ),
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: utils.getPaddingDefault(),
-            child: Row(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  width: width / 3.5,
+                SizedBox(
+                  width: width / 2.8,
                   height: 50,
+                  child: const DropdownWidget(),
                 ),
                 const SizedBox(
-                  width: 4,
+                  width: 5,
                 ),
-                Container(
-                  width: width / 1.6,
-                  height: 50,
-                  child: TextField(
-                    decoration: const InputDecoration(labelText: "Enter your number"),
+                SizedBox(
+                  width: width / 1.7,
+                  child: TextFormField(
+                    initialValue: '1',
+                    textAlign: TextAlign.end,
+                    style: conversionStyles.paragraph(
+                      textSize.xMedium,
+                      color: Colors.white,
+                      weight: FontWeight.bold,
+                    ),
+                    decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white38,
+                      contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+                      border: UnderlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                    ),
                     keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      CentavosInputFormatter(),
+                    ],
+                    onChanged: (value) {
+                      kLogger.d(value);
+                    },
                   ),
                 ),
               ],
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
