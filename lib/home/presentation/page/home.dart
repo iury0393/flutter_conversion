@@ -40,44 +40,88 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   width: width / 2.8,
                   height: 50,
-                  child: const DropdownWidget(),
+                  child: DropdownWidget(items: utils.items, title: 'Moeda'),
                 ),
                 const SizedBox(
                   width: 5,
                 ),
                 SizedBox(
                   width: width / 1.7,
-                  child: TextFormField(
-                    initialValue: '1',
-                    textAlign: TextAlign.end,
-                    style: conversionStyles.paragraph(
-                      textSize.xMedium,
-                      color: Colors.white,
-                      weight: FontWeight.bold,
-                    ),
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white38,
-                      contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-                      border: UnderlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                    ),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      CentavosInputFormatter(),
-                    ],
+                  child: textFormFieldWidget(
                     onChanged: (value) {
                       kLogger.d(value);
                     },
                   ),
                 ),
               ],
-            )
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: Icon(
+                Icons.swap_vert,
+                size: 50,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: width / 2.8,
+                  height: 50,
+                  child: DropdownWidget(
+                    items: utils.items2,
+                    title: 'Real',
+                    selectedValued: 'BRL',
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                SizedBox(
+                  width: width / 1.7,
+                  child: textFormFieldWidget(
+                    readOnly: true,
+                    onChanged: (value) {
+                      kLogger.d(value);
+                    },
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  TextFormField textFormFieldWidget({
+    String initialValue = '1',
+    bool readOnly = false,
+    Function(String)? onChanged,
+  }) {
+    return TextFormField(
+      readOnly: readOnly,
+      initialValue: initialValue,
+      textAlign: TextAlign.end,
+      style: conversionStyles.paragraph(
+        textSize.xMedium,
+        color: Colors.white,
+        weight: FontWeight.bold,
+      ),
+      decoration: const InputDecoration(
+        filled: true,
+        fillColor: Colors.white38,
+        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+        border: UnderlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
+      ),
+      keyboardType: TextInputType.number,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        CentavosInputFormatter(),
+      ],
+      onChanged: onChanged,
     );
   }
 }

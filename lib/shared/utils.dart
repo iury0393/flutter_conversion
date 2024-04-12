@@ -23,4 +23,8 @@ class Utils {
     Conversion.real,
     Conversion.liraTurca,
   ];
+
+  final List<Conversion> items2 = [
+    Conversion.real,
+  ];
 }

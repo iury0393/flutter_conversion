@@ -5,7 +5,15 @@ import 'package:flutter_conversion/shared/conversion_styles.dart';
 import 'package:flutter_conversion/shared/utils.dart';
 
 class DropdownWidget extends StatefulWidget {
-  const DropdownWidget({super.key});
+  final List<Conversion> items;
+  final String title;
+  final String? selectedValued;
+  const DropdownWidget({
+    super.key,
+    required this.items,
+    required this.title,
+    this.selectedValued,
+  });
 
   @override
   State<DropdownWidget> createState() => _DropdownWidgetState();
@@ -36,7 +44,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                 ),
                 Expanded(
                   child: Text(
-                    'Moeda',
+                    widget.title,
                     style: conversionStyles.paragraph(
                       textSize.xMedium,
                       color: Colors.white,
@@ -47,7 +55,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                 ),
               ],
             ),
-            items: utils.items
+            items: widget.items
                 .map((Conversion item) => DropdownMenuItem<String>(
                       value: item.code,
                       child: Text(
@@ -61,7 +69,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                       ),
                     ))
                 .toList(),
-            value: selectedValue,
+            value: widget.selectedValued,
             onChanged: (value) {
               setState(() {
                 selectedValue = value;
