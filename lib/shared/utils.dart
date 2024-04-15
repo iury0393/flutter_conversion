@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conversion/shared/conversion.dart';
 import 'package:logger/logger.dart';
 
-const kBaseURL = '';
+const kBaseURL = 'https://economia.awesomeapi.com.br';
 var kLogger = Logger();
 
 class Utils {
