@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conversion/dependency_injection.dart';
 import 'package:flutter_conversion/home/presentation/page/home.dart';
 
 main() {
+  setup();
   runApp(const ConversionApp());
 }
 
