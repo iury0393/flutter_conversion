@@ -8,6 +8,6 @@ class GetConversionRepositoryImpl implements GetConversionRepository {
 
   @override
   Future<ConversionModel> getConversion(String moeda) {
-    throw UnimplementedError();
+    return getConversionDataSource.getConversion(moeda);
   }
 }
